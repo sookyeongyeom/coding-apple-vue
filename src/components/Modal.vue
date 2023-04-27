@@ -33,6 +33,21 @@ export default {
       month: 1,
     };
   },
+  watch: {
+    month(month, prevMonth) {
+      if (month > 12) {
+        alert('12개월까지만 입력하실 수 있어요.');
+        this.month = prevMonth;
+      }
+      if (isNaN(month)) {
+        alert('문자는 입력하실 수 없어요.');
+        this.month = prevMonth;
+      }
+    },
+    selectedProduct(selectedProduct) {
+      if (selectedProduct === -1) this.month = 1;
+    },
+  },
   methods: {
     stopPropagation(event) {
       event.stopPropagation();
