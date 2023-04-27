@@ -4,7 +4,8 @@
       <img :src="products[selectedProduct].image" />
       <h4>{{ products[selectedProduct].title }}</h4>
       <p>{{ products[selectedProduct].content }}</p>
-      <p>{{ products[selectedProduct].price }}원</p>
+      <input v-model="month" />
+      <p>{{ products[selectedProduct].price * month }}원 ({{ month || 0 }}개월)</p>
     </div>
   </div>
 </template>
@@ -27,6 +28,11 @@ export default {
     },
   },
   emits: ['unselectProduct'],
+  data() {
+    return {
+      month: 1,
+    };
+  },
   methods: {
     stopPropagation(event) {
       event.stopPropagation();
