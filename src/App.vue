@@ -1,5 +1,7 @@
 <template>
-  <Modal :selected-product="selectedProduct" :products="products" @unselectProduct="unselectProduct" />
+  <transition name="fade">
+    <Modal :selected-product="selectedProduct" :products="products" @unselectProduct="unselectProduct" />
+  </transition>
   <Menu />
   <Discount />
   <Card v-for="(product, i) in products" :key="i" :product="product" @selectProduct="() => selectProduct(i)" />
@@ -44,5 +46,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: 0.3s ease;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-leave-active {
+  transition: 0.3s ease;
+}
+
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
