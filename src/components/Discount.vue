@@ -1,12 +1,22 @@
 <template>
-  <div class="discount">
-    <h4>지금 결제하면 20% 할인</h4>
+  <div v-if="discountRate > 0" class="discount">
+    <h4>지금 결제하면 {{ discountRate }}% 할인</h4>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Discount',
+  data() {
+    return {
+      discountRate: 20,
+    };
+  },
+  mounted() {
+    setInterval(() => {
+      this.discountRate--;
+    }, 1000);
+  },
 };
 </script>
 

@@ -48,6 +48,12 @@ export default {
       if (selectedProduct === -1) this.month = 1;
     },
   },
+  beforeUpdate() {
+    if (this.month == 2) {
+      alert('2개월은 안해요');
+      this.month = 3;
+    }
+  },
   methods: {
     stopPropagation(event) {
       event.stopPropagation();
