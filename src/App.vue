@@ -4,6 +4,9 @@
   </transition>
   <Menu />
   <Discount />
+  <button @click="priceSortByAsc">저렴한순정렬</button>
+  <button @click="priceSortByDesc">비싼순정렬</button>
+  <button @click="resetSort">되돌리기</button>
   <Card v-for="(product, i) in products" :key="i" :product="product" @selectProduct="() => selectProduct(i)" />
 </template>
 
@@ -18,6 +21,7 @@ export default {
     return {
       selectedProduct: -1,
       products: onerooms,
+      productsOrg: [...onerooms],
     };
   },
   methods: {
@@ -26,6 +30,15 @@ export default {
     },
     unselectProduct() {
       this.selectedProduct = -1;
+    },
+    priceSortByAsc() {
+      this.products.sort((a, b) => a.price - b.price);
+    },
+    priceSortByDesc() {
+      this.products.sort((a, b) => b.price - a.price);
+    },
+    resetSort() {
+      this.products = [...this.productsOrg];
     },
   },
 };
